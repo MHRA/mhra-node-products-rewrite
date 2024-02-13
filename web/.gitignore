@@ -1,0 +1,12 @@
+node_modules
+dist/
+yarn-error.log
+.next
+out/
+cypress/videos/
+cypress/screenshots/
+coverage/
+!.env.development
+!.env.test
+!.env.production
+reports.json

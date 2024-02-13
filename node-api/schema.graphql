@@ -1,0 +1,222 @@
+schema {
+  query: QueryRoot
+}
+
+# Directs the executor to query only when the field exists.
+directive @ifdef on FIELD
+
+# An SPC, PIL or PAR document
+type Document {
+  # Product associated with document
+  productName: String
+
+  # Active substances associated with document
+  activeSubstances: [String!]
+
+  # Title
+  title: String
+
+  # Highlights
+  highlights: [String!]
+
+  # Created date
+  created: String
+
+  # Document type
+  docType: DocumentType
+
+  # Territory type
+  territoryType: TerritoryType
+
+  # File size
+  fileSizeInBytes: Int
+
+  # PDF file name
+  name: String
+
+  # PDF file url
+  url: String
+}
+
+type DocumentEdge {
+  node: Document!
+  cursor: String!
+}
+
+# Document type (SPC/PIL/PAR)
+enum DocumentType {
+  SPC
+  PIL
+  PAR
+}
+
+# Territory type (UK/GB/NI)
+enum TerritoryType {
+  UK
+  GB
+  NI
+}
+
+type Documents {
+  pageInfo: PageInfo!
+  totalCount: Int!
+  edges: [DocumentEdge!]!
+}
+
+# Entrypoint for reports related to medicine levels in pregnancy
+type MedicineLevelsInPregnancy {
+  # Retrieves all reports associated with the queried active substance
+  substance(name: String): SubstanceReports!
+
+  # List of active substances beginning with the provided letter that have reports associated with them, along with the count of reports for each
+  substancesIndex(letter: String!): [SubstanceIndex!]!
+
+  # Reports related to medicine levels in pregnancy
+  reports(search: String, first: Int, skip: Int, after: String): Reports!
+}
+
+type PageInfo {
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  startCursor: String!
+  endCursor: String!
+}
+
+# A medical product containing active ingredients
+type Product {
+  # Name
+  name: String!
+
+  # Documents related to product
+  documents(
+    first: Int
+    offset: Int
+    documentTypes: [DocumentType!]
+    territoryTypes: [TerritoryType!]
+  ): Documents!
+}
+
+# The number of documents associated with a product
+type ProductIndex {
+  name: String!
+  count: Int!
+}
+
+# Entrypoint for products, where you can find associated SPCs, PILs and PARs
+type Products {
+  # Retrieves all products associated with the queried active substance
+  substance(name: String): Substance!
+
+  # Retrieves all documents associated with the queried product
+  product(name: String!): Product!
+
+  # List of active substances beginning with the provided letter that have reports associated with them, along with the count of documents for each
+  substancesIndex(letter: String!): [SubstanceIndex!]!
+
+  # List of products associated with the provided active substances that have reports associated with them, along with the count of documents for each
+  productsIndex(substance: String): [ProductIndex!]!
+
+  # SPC, PIL and PAR Documents related to products
+  documents(
+    search: String
+    first: Int
+    skip: Int
+    after: String
+    documentTypes: [DocumentType!]
+    territoryTypes: [TerritoryType!]
+  ): Documents!
+}
+
+# Query root
+type QueryRoot {
+  substance(name: String): Substance!
+    @deprecated(reason: "Please use `products::substance` instead")
+  product(name: String!): Product!
+    @deprecated(reason: "Please use `products::product` instead")
+  substancesIndex(letter: String!): [SubstanceIndex!]!
+    @deprecated(reason: "Please use `products::substances_index` instead")
+  productsIndex(substance: String!): [ProductIndex!]!
+    @deprecated(reason: "Please use `products::products_index` instead")
+  documents(
+    search: String
+    first: Int
+    skip: Int
+    after: String
+    documentTypes: [DocumentType!]
+    territoryTypes: [TerritoryType!]
+  ): Documents! @deprecated(reason: "Please use `products::documents` instead")
+  products: Products!
+  medicineLevelsInPregnancy: MedicineLevelsInPregnancy!
+}
+
+# A report related to medicine levels in pregnancy
+type Report {
+  # Products associated with report
+  products: [String!]
+
+  # Active substances associated with report
+  activeSubstances: [String!]
+
+  # Report name
+  title: String
+
+  # Highlights
+  highlights: [String!]
+
+  # File size
+  fileSizeInBytes: Int
+
+  # PDF file name
+  fileName: String
+
+  # PDF file url
+  fileUrl: String
+
+  # Summary
+  summary: String
+
+  # Matrices
+  matrices: [String!]
+
+  # PL numbers
+  plNumbers: [String!]
+
+  # Pregnancy trimesters
+  pregnancyTrimesters: [String!]
+
+  # PBPK models
+  pbpkModels: [String!]
+}
+
+type ReportEdge {
+  node: Report!
+  cursor: String!
+}
+
+type Reports {
+  pageInfo: PageInfo!
+  totalCount: Int!
+  edges: [ReportEdge!]!
+}
+
+# An active ingredient found in medical products
+type Substance {
+  name: String!
+  products: [Product!]!
+}
+
+# The number of documents associated with an active substance
+type SubstanceIndex {
+  name: String!
+  count: Int!
+}
+
+# An active ingredient found in medical products
+type SubstanceReports {
+  # Name
+  name: String!
+
+  # Reports related to active substance
+  reports(first: Int, offset: Int): Reports!
+}
+

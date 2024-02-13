@@ -1,0 +1,37 @@
+# Terraform ignores
+.terraform.lock.hcl
+crash.log
+
+# Rust ignores
+**/target
+**/*.rs.bk
+
+
+# NPM ignores
+**/node_modules
+
+# VSCode ignores
+**/.vscode/
+
+# Emacs ignores
+**/*~
+**/\#*\#
+**/.\#*
+
+# IntelliJ ignores
+**/.idea
+
+# Environment ignores
+**/.env*
+!**/.env.base
+!**/.env.example
+
+# Mac OS X ignores
+**/.DS_Store
+
+# Cypress files
+**/cypress/videos/
+**/cypress/screenshots/
+
+# Redis
+dump.rdb

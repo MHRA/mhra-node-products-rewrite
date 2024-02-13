@@ -1,0 +1,49 @@
+trigger:
+- main
+
+pr:
+- '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  appName: 'nibsc-producs-api'
+  resourceGroupName: 'NIBSC'
+  packagePath: '$(System.DefaultWorkingDirectory)/node-api'
+
+steps:
+- task: UseNode@1
+  inputs:
+    versionSpec: '18.x'
+    addToPath: true
+
+- script: |
+    cd $(System.DefaultWorkingDirectory)/node-api
+    npm install
+  displayName: 'Install dependencies and compile'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/node-api'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'GC-INTERNAL-NIBSC'
+    appType: webAppLinux
+    appName: '$(appName)'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'  # Use the correct package file name
+    deployToSlotOrASE: true
+    resourceGroupName: '$(resourceGroupName)'
+    slotName: 'production'
+    startUpCommand: 'node ./dist/index.js'

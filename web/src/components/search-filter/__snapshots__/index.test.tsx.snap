@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchFilter should render search filter 1`] = `
+<section
+  className="sc-dkzDqf gFDbOp"
+>
+  <h3
+    className="sc-iBkjds jopVIF"
+  >
+    Documents filter
+  </h3>
+  <fieldset
+    className="sc-eCYdqJ kcQGTi"
+  >
+    <legend
+      className="sc-jSMfEi hgJpQT"
+    >
+      Filter documents by
+    </legend>
+    <legend
+      className="sc-gKXOVf gQrprt"
+    >
+      Type of document
+    </legend>
+    <div
+      className="checkbox-row"
+    >
+      <div
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          className="sc-bczRLJ ldzjBD"
+          id="filter-spc"
+          name="doc"
+          onChange={[Function]}
+          type="checkbox"
+          value="Spc"
+        />
+      </div>
+      <label
+        htmlFor="filter-spc"
+      >
+        Summary of Product Characteristics
+         (
+        SPC
+        )
+      </label>
+    </div>
+    <div
+      className="checkbox-row"
+    >
+      <div
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          className="sc-bczRLJ ldzjBD"
+          id="filter-pil"
+          name="doc"
+          onChange={[Function]}
+          type="checkbox"
+          value="Pil"
+        />
+      </div>
+      <label
+        htmlFor="filter-pil"
+      >
+        Patient Information Leaflet
+         (
+        PIL
+        )
+      </label>
+    </div>
+    <div
+      className="checkbox-row"
+    >
+      <div
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          className="sc-bczRLJ ldzjBD"
+          id="filter-par"
+          name="doc"
+          onChange={[Function]}
+          type="checkbox"
+          value="Par"
+        />
+      </div>
+      <label
+        htmlFor="filter-par"
+      >
+        Public Assessment Reports
+         (
+        PAR
+        )
+      </label>
+    </div>
+    <legend
+      className="sc-gKXOVf gQrprt"
+    >
+      Applicable to territory
+    </legend>
+    <div
+      className="checkbox-row"
+    >
+      <div
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          className="sc-bczRLJ ldzjBD"
+          id="filter-uk"
+          name="ter"
+          onChange={[Function]}
+          type="checkbox"
+          value="UK"
+        />
+      </div>
+      <label
+        htmlFor="filter-uk"
+      >
+        United Kingdom
+         (
+        UK
+        )
+      </label>
+    </div>
+    <div
+      className="checkbox-row"
+    >
+      <div
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          className="sc-bczRLJ ldzjBD"
+          id="filter-ni"
+          name="ter"
+          onChange={[Function]}
+          type="checkbox"
+          value="NI"
+        />
+      </div>
+      <label
+        htmlFor="filter-ni"
+      >
+        Northern Ireland
+         (
+        NI
+        )
+      </label>
+    </div>
+    <div
+      className="checkbox-row"
+    >
+      <div
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          className="sc-bczRLJ ldzjBD"
+          id="filter-gb"
+          name="ter"
+          onChange={[Function]}
+          type="checkbox"
+          value="GB"
+        />
+      </div>
+      <label
+        htmlFor="filter-gb"
+      >
+        Great Britain
+         (
+        GB
+        )
+      </label>
+    </div>
+    <div
+      className="sc-hKMtZM iefjqC"
+    >
+      <input
+        className="sc-gsnTZi jmRmnt"
+        onClick={[Function]}
+        type="submit"
+        value="Submit"
+      />
+    </div>
+  </fieldset>
+</section>
+`;

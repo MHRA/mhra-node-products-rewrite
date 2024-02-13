@@ -1,0 +1,441 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResults should render 1`] = `
+Array [
+  <div
+    className="sc-kDDrLX dlyPHs"
+  >
+    <div>
+      <div
+        className="sc-evZas bmKfiM"
+      >
+        <h2
+          className="title"
+        >
+          Showing results for Tea
+        </h2>
+        <p
+          className="sc-breuTD cHDgef no-of-results"
+        >
+          1 to 2 of 200
+        </p>
+      </div>
+      <p
+        className="ema-message"
+      >
+        If the product information you are seeking does not appear below, it is possible that the product holds a European licence and its information may be available at the 
+        <a
+          href="https://www.ema.europa.eu/en"
+          target="_blank"
+        >
+          European Medicines Agency
+        </a>
+         website.
+      </p>
+      <p>
+        Before a medicine can be sold in the UK, a number of licences are essential. Products with a UK marketing authorisation have a licence number in the format ‘PL 12345/0001’, ‘PLGB 12345/0002’ or ‘PLNI 12345/0003’. The licence number can be found on the packaging of the product and the first 2 characters are always contain the letters ‘PL’.
+      </p>
+      <p>
+        You can identify the product in the list below using the PL, PLGB, PLNI, THR, THRGB, THRNI, NR, NRGB or NRNI number.
+      </p>
+      <p>
+        The information about a medicine will be updated when new evidence becomes available. This may mean that there are differences between the information in the pack and the information here. The most up-to-date information will be available on this site.
+      </p>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="column filter"
+      >
+        <section
+          className="sc-eCYdqJ jVvpYH"
+        >
+          <h3
+            className="sc-papXJ CpIQr"
+          >
+            Documents filter
+          </h3>
+          <fieldset
+            className="sc-gKXOVf hkSDMF"
+          >
+            <legend
+              className="sc-iBkjds iYbVzI"
+            >
+              Filter documents by
+            </legend>
+            <legend
+              className="sc-ftvSup cZSEFc"
+            >
+              Type of document
+            </legend>
+            <div
+              className="checkbox-row"
+            >
+              <div
+                className="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="sc-bczRLJ ldzjBD"
+                  id="filter-spc"
+                  name="doc"
+                  onChange={[Function]}
+                  type="checkbox"
+                  value="Spc"
+                />
+              </div>
+              <label
+                htmlFor="filter-spc"
+              >
+                Summary of Product Characteristics
+                 (
+                SPC
+                )
+              </label>
+            </div>
+            <div
+              className="checkbox-row"
+            >
+              <div
+                className="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="sc-bczRLJ ldzjBD"
+                  id="filter-pil"
+                  name="doc"
+                  onChange={[Function]}
+                  type="checkbox"
+                  value="Pil"
+                />
+              </div>
+              <label
+                htmlFor="filter-pil"
+              >
+                Patient Information Leaflet
+                 (
+                PIL
+                )
+              </label>
+            </div>
+            <div
+              className="checkbox-row"
+            >
+              <div
+                className="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="sc-bczRLJ ldzjBD"
+                  id="filter-par"
+                  name="doc"
+                  onChange={[Function]}
+                  type="checkbox"
+                  value="Par"
+                />
+              </div>
+              <label
+                htmlFor="filter-par"
+              >
+                Public Assessment Reports
+                 (
+                PAR
+                )
+              </label>
+            </div>
+            <legend
+              className="sc-ftvSup cZSEFc"
+            >
+              Applicable to territory
+            </legend>
+            <div
+              className="checkbox-row"
+            >
+              <div
+                className="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="sc-bczRLJ ldzjBD"
+                  id="filter-uk"
+                  name="ter"
+                  onChange={[Function]}
+                  type="checkbox"
+                  value="UK"
+                />
+              </div>
+              <label
+                htmlFor="filter-uk"
+              >
+                United Kingdom
+                 (
+                UK
+                )
+              </label>
+            </div>
+            <div
+              className="checkbox-row"
+            >
+              <div
+                className="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="sc-bczRLJ ldzjBD"
+                  id="filter-ni"
+                  name="ter"
+                  onChange={[Function]}
+                  type="checkbox"
+                  value="NI"
+                />
+              </div>
+              <label
+                htmlFor="filter-ni"
+              >
+                Northern Ireland
+                 (
+                NI
+                )
+              </label>
+            </div>
+            <div
+              className="checkbox-row"
+            >
+              <div
+                className="checkbox"
+              >
+                <input
+                  checked={false}
+                  className="sc-bczRLJ ldzjBD"
+                  id="filter-gb"
+                  name="ter"
+                  onChange={[Function]}
+                  type="checkbox"
+                  value="GB"
+                />
+              </div>
+              <label
+                htmlFor="filter-gb"
+              >
+                Great Britain
+                 (
+                GB
+                )
+              </label>
+            </div>
+            <div
+              className="sc-jSMfEi dLAtlZ"
+            >
+              <input
+                className="sc-gsnTZi jmRmnt"
+                onClick={[Function]}
+                type="submit"
+                value="Submit"
+              />
+            </div>
+          </fieldset>
+        </section>
+      </div>
+      <section
+        className="column results"
+      >
+        <h3
+          className="sc-iqcoie fwVrMN"
+        >
+          Search results
+        </h3>
+        <dl>
+          <div
+            className="search-result"
+          >
+            <dt
+              className="left"
+            >
+              <p
+                className="icon"
+              >
+                STRING
+              </p>
+            </dt>
+            <dd
+              className="right"
+            >
+              <a
+                className="doc-type-string"
+                href="string"
+              >
+                <p
+                  className="title"
+                >
+                  string
+                </p>
+                <p
+                  className="subtitle"
+                >
+                  string
+                </p>
+              </a>
+              <p
+                className="metadata"
+              >
+                File size: 
+                string
+                 KB
+              </p>
+              <p
+                className="metadata"
+              >
+                Active substances:
+                 
+                Tea, Coffee
+              </p>
+              <p
+                className="context"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "string",
+                  }
+                }
+              />
+            </dd>
+          </div>
+          <div
+            className="search-result"
+          >
+            <dt
+              className="left"
+            >
+              <p
+                className="icon"
+              >
+                STRING
+              </p>
+            </dt>
+            <dd
+              className="right"
+            >
+              <a
+                className="doc-type-string"
+                href="string"
+              >
+                <p
+                  className="title"
+                >
+                  string
+                </p>
+                <p
+                  className="subtitle"
+                >
+                  string
+                </p>
+              </a>
+              <p
+                className="metadata"
+              >
+                File size: 
+                string
+                 KB
+              </p>
+              <p
+                className="metadata"
+              >
+                Active substances:
+                 
+                Tea, Coffee
+              </p>
+              <p
+                className="context"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "string",
+                  }
+                }
+              />
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+  </div>,
+  <nav
+    className="sc-jqUVSM goXwte"
+  >
+    <nav
+      aria-label="Pagination Navigation"
+    >
+      <div
+        className="pagination"
+      >
+        <ul
+          className="pagination-number"
+        >
+          <li
+            aria-current="true"
+            aria-label="Current Page, Page 1"
+          >
+            1
+            <span>
+              –
+            </span>
+          </li>
+          <li
+            aria-label="Goto Page 2"
+            onClick={[Function]}
+          >
+            <span
+              className="link-text"
+            >
+              2
+            </span>
+          </li>
+          <li>
+            …
+          </li>
+          <li
+            aria-label="Goto Page 11"
+            onClick={[Function]}
+          >
+            <span
+              className="link-text"
+            >
+              11
+            </span>
+          </li>
+        </ul>
+        <button
+          aria-label="Goto next page, Page 2"
+          className="arrow"
+          onClick={[Function]}
+        >
+          Next
+        </button>
+      </div>
+    </nav>
+  </nav>,
+]
+`;
+
+exports[`SearchResults should render error message 1`] = `
+<div
+  className="sc-kDDrLX dlyPHs"
+>
+  <p
+    className="sc-crXcEl esUImf"
+  >
+    Sorry - the site is experiencing technical issues right now. Please try again later.
+  </p>
+</div>
+`;
+
+exports[`SearchResults should render loading page 1`] = `
+<div
+  className="sc-kDDrLX dlyPHs"
+>
+  <h2
+    className="title"
+  >
+    Loading results for Tea...
+  </h2>
+</div>
+`;

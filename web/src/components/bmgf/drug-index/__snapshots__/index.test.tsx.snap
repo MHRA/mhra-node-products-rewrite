@@ -1,0 +1,480 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DrugIndex should render horizontal items 1`] = `
+<nav
+  className="sc-bczRLJ hrwWmM"
+>
+  <p
+    className="horizontal"
+  >
+    Coffee
+  </p>
+  <ul
+    className="horizontal"
+  >
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=A"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        A
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=B"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        B
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=C"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        C
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=D"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        D
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=E"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        E
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=F"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        F
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=G"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        G
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=H"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        H
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=I"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        I
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=J"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        J
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=K"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        K
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=L"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        L
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=M"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        M
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=N"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        N
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=O"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        O
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=P"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        P
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=Q"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Q
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=R"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        R
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=S"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        S
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=T"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        T
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=U"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        U
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=V"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        V
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=W"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        W
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=X"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        X
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=Y"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Y
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=Z"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Z
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=0"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        0
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=1"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        1
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=2"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        2
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=3"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        3
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=4"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        4
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=5"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        5
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=6"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        6
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=7"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        7
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=8"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        8
+         
+      </a>
+    </li>
+    <li
+      className=""
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance-index?letter=9"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        9
+         
+      </a>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`DrugIndex should render substances 1`] = `
+<nav
+  className="sc-bczRLJ hrwWmM"
+>
+  <h2>
+    Coffee
+  </h2>
+  <ul
+    className=""
+  >
+    <li
+      className="substance-name"
+    >
+      <a
+        href="/medicine-levels-in-pregnancy/substance?substance=Ibuprofen"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Ibuprofen
+         
+        (
+        1
+         
+        report
+        )
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

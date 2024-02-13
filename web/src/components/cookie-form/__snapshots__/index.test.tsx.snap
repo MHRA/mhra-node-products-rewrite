@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CookieForm should render 🍪 1`] = `
+<section
+  className="sc-bczRLJ iahJwb"
+>
+  <h3
+    className="sc-dkzDqf kQvSSC"
+  >
+    Toggle cookie permissions
+  </h3>
+  <form
+    onSubmit={[Function]}
+  >
+    <p>
+      <label
+        htmlFor="cookie-on"
+      >
+        <input
+          aria-checked={true}
+          checked={true}
+          id="cookie-on"
+          name="cookie"
+          onChange={[Function]}
+          type="radio"
+          value="on"
+        />
+        On
+      </label>
+      <label
+        htmlFor="cookie-off"
+      >
+        <input
+          aria-checked={true}
+          checked={false}
+          id="cookie-off"
+          name="cookie"
+          onChange={[Function]}
+          type="radio"
+          value="off"
+        />
+        Off
+      </label>
+    </p>
+    <div
+      className="sc-gsnTZi jZbapK"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": Object {
+            "process": [Function],
+          },
+        }
+      }
+    />
+    <p>
+      <button>
+        Save your preferences
+      </button>
+    </p>
+  </form>
+</section>
+`;
+
+exports[`CookieForm should render 🚫 1`] = `
+<section
+  className="sc-bczRLJ iahJwb"
+>
+  <h3
+    className="sc-dkzDqf kQvSSC"
+  >
+    Toggle cookie permissions
+  </h3>
+  <form
+    onSubmit={[Function]}
+  >
+    <p>
+      <label
+        htmlFor="cookie-on"
+      >
+        <input
+          aria-checked={false}
+          checked={false}
+          id="cookie-on"
+          name="cookie"
+          onChange={[Function]}
+          type="radio"
+          value="on"
+        />
+        On
+      </label>
+      <label
+        htmlFor="cookie-off"
+      >
+        <input
+          aria-checked={false}
+          checked={true}
+          id="cookie-off"
+          name="cookie"
+          onChange={[Function]}
+          type="radio"
+          value="off"
+        />
+        Off
+      </label>
+    </p>
+    <div
+      className="sc-gsnTZi jZbapK"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": Object {
+            "process": [Function],
+          },
+        }
+      }
+    />
+    <p>
+      <button>
+        Save your preferences
+      </button>
+    </p>
+  </form>
+</section>
+`;

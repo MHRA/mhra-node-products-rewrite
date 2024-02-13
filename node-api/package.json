@@ -1,0 +1,44 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "type": "module",
+  "scripts": {
+    "build-test": "npm run compile && mocha tests",
+    "test": "mocha tests",
+    "generate": "graphql-codegen --config codegen.yml",
+    "compile": "npm run generate && tsc",
+    "tsc": "tsc",
+    "start": "npm run compile && node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.5.0",
+    "@azure/storage-blob": "^12.16.0",
+    "@graphql-codegen/cli": "^3.3.0",
+    "@graphql-codegen/typescript": "^3.0.3",
+    "@graphql-codegen/typescript-resolvers": "^3.2.0",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "axios": "^1.3.4",
+    "base-64": "^1.0.0",
+    "chai": "^4.3.7",
+    "graphql": "^16.6.0",
+    "memory-cache": "^0.2.0",
+    "mocha": "^10.2.0",
+    "node-cron": "^3.0.2",
+    "sinon": "^15.1.2",
+    "string.prototype.replaceall": "^1.0.7",
+    "typescript-json-serializer": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.5",
+    "typescript": "^5.0.2"
+  }
+}

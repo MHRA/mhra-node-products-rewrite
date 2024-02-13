@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render 1`] = `
+<section
+  className="sc-dkzDqf jHgZzt"
+>
+  <h3
+    className="sc-hKMtZM czpOnd"
+  >
+    Search by text
+  </h3>
+  <form
+    aria-label="Search for medicines"
+    onSubmit={[MockFunction]}
+    role="search"
+  >
+    <label
+      htmlFor="search"
+    >
+      Enter a product, active substance, or PL number:
+    </label>
+    <div
+      className="searchbar"
+    >
+      <input
+        id="search"
+        onBlur={[MockFunction]}
+        onChange={[MockFunction]}
+        type="search"
+        value="drug"
+      />
+      <input
+        className="sc-gsnTZi jmRmnt"
+        type="submit"
+        value="Search"
+      />
+    </div>
+  </form>
+</section>
+`;
