@@ -2,12 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "subscriptionId": {
-            "value": "bec11470-1346-4cdd-af2e-ce1f360671a1"
-        },
-        "resourceGroupName": {
-            "value": "adazr-rg-1001"
-        },
         "name": {
             "value": "app-node-api-uks"
         },
