@@ -1,0 +1,81 @@
+name: Infrastructure CI
+on:
+    push:
+      branches:
+        - main
+        - feature/**
+      paths:
+        - "infrastructure/**"
+        - ".github/workflows/infra**"
+
+jobs:
+  Bicep-ASP-if:
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Checkout Code ☁️"
+      uses: actions/checkout@v3
+
+    - name: "Az CLI Login"
+      uses: azure/login@v1
+      with:
+        creds: "${{ secrets.AZURE_CREDENTIALS }}"
+
+    - name: "Run what-if for CI"
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: infrastructure/app-service-plan/main.bicep
+        parameters: 'infrastructure/app-service-plan/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} appInsightConnectionString=${{ secrets.NEXT_PUBLIC_APP_INSIGHTS_CONNECTION_STRING }}'
+        # RepoToken appInsightConnectionString??
+        failOnStdErr: false    
+        # ??
+        additionalArguments: "--what-if"
+
+  Bicep-node-api-what-if:
+    if: ${{ github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'infrastructure/node-api') }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Checkout Code ☁️"
+      uses: actions/checkout@v3
+
+    - name: "Az CLI Login"
+      uses: azure/login@v1
+      with:
+        creds: "${{ secrets.AZURE_CREDENTIALS }}"
+
+    - name: "Run what-if for CI"
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: infrastructure/node-api/main.bicep
+        parameters: 'infrastructure/node-api/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} appInsightConnectionString=${{ secrets.NEXT_PUBLIC_APP_INSIGHTS_CONNECTION_STRING }}'
+        # RepoToken appInsightConnectionString??
+        failOnStdErr: false    
+        # ??
+        additionalArguments: "--what-if"
+
+  Bicep-node-doc-index-updater-what-if:
+      runs-on: ubuntu-latest
+      if: ${{ github.event_name == 'push' && startsWith(github.event.head_commit.modified, 'infrastructure/node-doc-index-updater/') }}
+      steps:
+      - name: "Checkout Code ☁️"
+        uses: actions/checkout@v3
+
+      - name: "Az CLI Login"
+        uses: azure/login@v1
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+
+      - name: "Run what-if for CI"
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          template: infrastructure/node-doc-index-updater/main.bicep
+          parameters: 'infrastructure/node-doc-index-updater/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} appInsightConnectionString=${{ secrets.NEXT_PUBLIC_APP_INSIGHTS_CONNECTION_STRING }}'
+          # RepoToken appInsightConnectionString??
+          failOnStdErr: false    
+          # ??
+          additionalArguments: "--what-if"
