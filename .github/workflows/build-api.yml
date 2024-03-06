@@ -1,0 +1,43 @@
+name: Build API
+
+on: [workflow_call]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+      
+      - name: "Set up node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+      
+      - name: "Install deps"
+        working-directory: node-api
+        run: npm ci
+
+      - name: "Unit test"
+        working-directory: node-api
+        run: npm run build-test
+
+      - name: "Zip for sonarqube"
+        run: zip -r node-api.zip node-api
+
+      - name: "Zip deploy package"
+        run: zip -r deploy.zip node-api/dist
+        
+      - name: "Publish artifact: Node API"
+        uses: actions/upload-artifact@v2
+        with:
+          name: node-api
+          path: node-api.zip
+          retention-days: 2
+      
+      - name: "Publish artifact: Deploy package"
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy-api
+          path: deploy.zip
+          retention-days: 2

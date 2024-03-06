@@ -1,0 +1,17 @@
+name: API pipeline
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - node-api/**
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-api.yml
+
+  deploy-dev:
+    needs: build
+    uses: ./.github/workflows/deploy-api.yml
+    with:
+      WEB_APP_NAME: abc

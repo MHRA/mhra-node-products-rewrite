@@ -1,0 +1,31 @@
+name: Deploy API
+
+on: 
+  workflow_call:
+    inputs:
+      WEB_APP_NAME:
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: az-login
+        uses: azure/login@v1
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      
+      - name: download-artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: deploy-api
+
+      - name: unzip-package
+        run: unzip deploy.zip
+
+      - name: deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ inputs.WEB_APP_NAME }}
+          package: .
