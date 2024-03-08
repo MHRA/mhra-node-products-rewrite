@@ -32,7 +32,7 @@ jobs:
   #     AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
 
   Infra-Deploy-non-prod:
-      uses: ./.github/workflows/infra-deploy.yml
+      uses: ./.github/workflows/infra-cd.yml
       if: github.event_name == 'push' && github.ref_name == 'main'
       with:
         environment: 'non-prod' 
