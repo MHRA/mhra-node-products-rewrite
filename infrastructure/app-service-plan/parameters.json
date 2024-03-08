@@ -1,11 +1,13 @@
+
+
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "name": {
+        "appServicePlanName": {
             "value": "asp-mhra-node-products"
         },
-        "location": {
+        "appSevicePlanLocation": {
             "value": "UK South"
         },
         "numberOfWorkers": {
@@ -22,6 +24,42 @@
         },
         "workerSizeId": {
             "value": "0"
+        },
+        "nodeApiName": {
+            "value": "app-node-api-uks"
+        },
+        "nodeApiLocation": {
+            "value": "UK South"
+        },
+        "hostingPlanName": {
+            "value": "asp-mhra-node-products"
+        },
+        "serverFarmResourceGroup": {
+            "value": "adazr-rg-1001"
+        },
+        "alwaysOn": {
+            "value": false
+        },
+        "ftpsState": {
+            "value": "FtpsOnly"
+        },
+        "linuxFxVersion": {
+            "value": "NODE|20-lts"
+        },
+        "nodeApiIndexUpdaterName": {
+            "value": "app-node-doc-index-updater-uks"
+        },
+        "nodeApiIndexUpdaterLocation": {
+            "value": "UK South"
+        },
+        "nodeApiIndexUpdaterAlwaysOn": {
+            "value": false
+        },
+        "nodeApiIndexUpdaterftpsState": {
+            "value": "FtpsOnly"
+        },
+        "nodeApiIndexUpdaterlinuxFxVersion": {
+            "value": "NODE|20-lts"
         }
     }
 }
