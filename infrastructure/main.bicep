@@ -11,12 +11,10 @@ param workerSizeId string
 param numberOfWorkers string
 
 // 2 apps params
-param subscriptionId string
 
 // api only
 param nodeApiName string
 param nodeApiLocation string
-param serverFarmResourceGroup string
 param nodeApiAlwaysOn bool
 param nodeApiFtpsState string
 param nodeApiLinuxFxVersion string
@@ -62,7 +60,7 @@ resource nodeApiApp 'Microsoft.Web/sites@2018-11-01' = {
       alwaysOn: nodeApiAlwaysOn
       ftpsState: nodeApiFtpsState
     }
-    serverFarmId: '/subscriptions/${subscriptionId}/resourcegroups/adazr-rg-1001/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
+    serverFarmId: appServicePlan.id
     clientAffinityEnabled: false
     virtualNetworkSubnetId: null
     httpsOnly: true
@@ -85,7 +83,7 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2018-11-01' = {
       alwaysOn: nodeDocIndexUpdaterAlwaysOn 
       ftpsState: nodeDocIndexUpdaterftpsState
     }
-    serverFarmId: '/subscriptions/${subscriptionId}/resourcegroups/${serverFarmResourceGroup}/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
+    serverFarmId:  appServicePlan.id
     clientAffinityEnabled: false
     virtualNetworkSubnetId: null
     httpsOnly: true
