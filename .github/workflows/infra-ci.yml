@@ -26,7 +26,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: infrastructure/app-service-plan/main.bicep
-        parameters: 'infrastructure/app-service-plan/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} appInsightConnectionString=${{ secrets.NEXT_PUBLIC_APP_INSIGHTS_CONNECTION_STRING }}'
+        parameters: 'infrastructure/app-service-plan/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }}'
         # RepoToken appInsightConnectionString??
         failOnStdErr: false    
         # ??
@@ -50,7 +50,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: infrastructure/node-api/main.bicep
-        parameters: 'infrastructure/node-api/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} appInsightConnectionString=${{ secrets.NEXT_PUBLIC_APP_INSIGHTS_CONNECTION_STRING }}'
+        parameters: 'infrastructure/node-api/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} '
         # RepoToken appInsightConnectionString??
         failOnStdErr: false    
         # ??
@@ -74,7 +74,7 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: infrastructure/node-doc-index-updater/main.bicep
-          parameters: 'infrastructure/node-doc-index-updater/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} appInsightConnectionString=${{ secrets.NEXT_PUBLIC_APP_INSIGHTS_CONNECTION_STRING }}'
+          parameters: 'infrastructure/node-doc-index-updater/parameters.json repositoryToken=${{ secrets.REPOSITORYTOKEN }} '
           # RepoToken appInsightConnectionString??
           failOnStdErr: false    
           # ??
