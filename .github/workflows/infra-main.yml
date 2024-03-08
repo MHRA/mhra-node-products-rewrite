@@ -10,11 +10,11 @@ on:
 
 
 jobs:
-  Infra-CI-Dev:
+  Infra-CI-non-prod:
     uses: ./.github/workflows/infra-ci.yml
     if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' ) 
     with:
-      environment: 'Dev'
+      environment: 'non-prod'
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_RG: ${{ secrets.AZURE_RG }}
@@ -24,7 +24,7 @@ jobs:
 #     uses: ./.github/workflows/infra-ci.yml
 #     if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' )
 #     with:
-#       environment: 'Prod' 
+#       environment: 'prod' 
 #     secrets:
 #       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 #       AZURE_RG: ${{ secrets.AZURE_RG }}
