@@ -16,6 +16,8 @@ on:
 
 jobs:
   Infra-CI-What-If:
+    environment:
+      name: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout Code ☁️"
