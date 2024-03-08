@@ -62,7 +62,7 @@ resource nodeApiApp 'Microsoft.Web/sites@2018-11-01' = {
       alwaysOn: nodeApiAlwaysOn
       ftpsState: nodeApiFtpsState
     }
-    serverFarmId: '/subscriptions/${subscriptionId}/resourcegroups/${serverFarmResourceGroup}/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
+    serverFarmId: '/subscriptions/${subscriptionId}/resourcegroups/adazr-rg-1001/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
     clientAffinityEnabled: false
     virtualNetworkSubnetId: null
     httpsOnly: true

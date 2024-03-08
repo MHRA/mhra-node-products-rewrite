@@ -19,7 +19,6 @@ jobs:
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_RG: ${{ secrets.AZURE_RG }}
-      AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
 
   # Infra-CI-Prod:
   #   uses: ./.github/workflows/infra-ci.yml
@@ -29,7 +28,7 @@ jobs:
   #   secrets:
   #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   #     AZURE_RG: ${{ secrets.AZURE_RG }}
-  #     AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
+
 
   Infra-Deploy-non-prod:
       uses: ./.github/workflows/infra-cd.yml
@@ -38,6 +37,5 @@ jobs:
         environment: 'non-prod' 
       secrets:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-          AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
           AZURE_RG: ${{ secrets.AZURE_RG }}
 
