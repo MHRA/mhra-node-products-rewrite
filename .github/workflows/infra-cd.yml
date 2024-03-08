@@ -9,8 +9,7 @@ on:
     secrets:
       AZURE_CREDENTIALS:
         required: true
-      AZURE_RG:
-        required: true
+
 
 jobs:
   Deploy-bicep:
@@ -29,7 +28,6 @@ jobs:
     - name: "Deploy Bicep File"
       uses: azure/arm-deploy@v1
       with:
-        resourceGroupName: ${{ secrets.AZURE_RG }}
         template: infrastructure/main.bicep
         parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'
         # failOnStdErr: false

@@ -48,7 +48,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2018-11-01' = {
 }
 
 
-resource nodeApiApp 'Microsoft.Web/sites@2018-11-01' = {
+resource nodeApiApp 'Microsoft.Web/sites@2018-11-01' = { // have a look at date version
   name: nodeApiName
   location: nodeApiLocation
   tags: {}

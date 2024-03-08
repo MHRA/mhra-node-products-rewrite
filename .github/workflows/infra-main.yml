@@ -18,7 +18,6 @@ jobs:
       environment: 'non-prod'
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-      AZURE_RG: ${{ secrets.AZURE_RG }}
 
   # Infra-CI-Prod:
   #   uses: ./.github/workflows/infra-ci.yml
@@ -27,7 +26,6 @@ jobs:
   #     environment: 'prod' 
   #   secrets:
   #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-  #     AZURE_RG: ${{ secrets.AZURE_RG }}
 
 
   Infra-Deploy-non-prod:
@@ -37,5 +35,3 @@ jobs:
         environment: 'non-prod' 
       secrets:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-          AZURE_RG: ${{ secrets.AZURE_RG }}
-
