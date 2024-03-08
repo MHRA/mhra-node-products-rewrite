@@ -18,7 +18,7 @@ param nodeApiName string
 param nodeApiLocation string
 param serverFarmResourceGroup string
 param nodeApiAlwaysOn bool
-param nodeApiftpsState string
+param nodeApiFtpsState string
 param nodeApiLinuxFxVersion string
 
 // updater only
@@ -50,7 +50,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2018-11-01' = {
 }
 
 
-resource webApp 'Microsoft.Web/sites@2018-11-01' = {
+resource nodeApiApp 'Microsoft.Web/sites@2018-11-01' = {
   name: nodeApiName
   location: nodeApiLocation
   tags: {}
@@ -60,7 +60,7 @@ resource webApp 'Microsoft.Web/sites@2018-11-01' = {
       appSettings: []
       linuxFxVersion: nodeApiLinuxFxVersion
       alwaysOn: nodeApiAlwaysOn
-      ftpsState: nodeApiftpsState
+      ftpsState: nodeApiFtpsState
     }
     serverFarmId: '/subscriptions/${subscriptionId}/resourcegroups/${serverFarmResourceGroup}/providers/Microsoft.Web/serverfarms/${appServicePlanName}'
     clientAffinityEnabled: false
@@ -73,7 +73,7 @@ resource webApp 'Microsoft.Web/sites@2018-11-01' = {
 
 
 
-resource name_resource 'Microsoft.Web/sites@2018-11-01' = {
+resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2018-11-01' = {
   name: nodeDocIndexUpdaterName
   location: nodeDocIndexUpdaterLocation
   tags: {}

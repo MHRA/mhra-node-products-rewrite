@@ -1,0 +1,32 @@
+name: LFC Infrastructure CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+    paths:
+      - "infrastructure/**"
+      - ".github/workflows/infra**"
+
+
+jobs:
+  Infra-CI-Dev:
+    uses: ./.github/workflows/infra-ci.yml
+    if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' ) 
+    with:
+      environment: 'Dev'
+    secrets:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      AZURE_RG: ${{ secrets.AZURE_RG }}
+      AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
+
+#   Infra-CI-Prod:
+#     uses: ./.github/workflows/infra-ci.yml
+#     if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' )
+#     with:
+#       environment: 'Prod' 
+#     secrets:
+#       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+#       AZURE_RG: ${{ secrets.AZURE_RG }}
+#       AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}

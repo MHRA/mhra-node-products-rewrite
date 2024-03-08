@@ -34,31 +34,28 @@
         "hostingPlanName": {
             "value": "asp-mhra-node-products"
         },
-        "serverFarmResourceGroup": {
-            "value": "adazr-rg-1001"
-        },
-        "alwaysOn": {
+        "nodeApirAlwaysOn": {
             "value": false
         },
-        "ftpsState": {
+        "nodeApiFtpsState": {
             "value": "FtpsOnly"
         },
-        "linuxFxVersion": {
+        "nodeApiLinuxFxVersion": {
             "value": "NODE|20-lts"
         },
-        "nodeApiIndexUpdaterName": {
+        "nodeDocIndexUpdaterName": {
             "value": "app-node-doc-index-updater-uks"
         },
-        "nodeApiIndexUpdaterLocation": {
+        "nodeDocIndexUpdaterLocation": {
             "value": "UK South"
         },
-        "nodeApiIndexUpdaterAlwaysOn": {
+        "nodeDocIndexUpdaterAlwaysOn": {
             "value": false
         },
-        "nodeApiIndexUpdaterftpsState": {
+        "nodeDocIndexUpdaterFtpsState": {
             "value": "FtpsOnly"
         },
-        "nodeApiIndexUpdaterlinuxFxVersion": {
+        "nodeDocIndexUpdaterlinuxFxVersion": {
             "value": "NODE|20-lts"
         }
     }

@@ -1,0 +1,62 @@
+
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appServicePlanName": {
+            "value": "asp-mhra-node-products"
+        },
+        "appSevicePlanLocation": {
+            "value": "UK South"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "sku": {
+            "value": "Free"
+        },
+        "skuCode": {
+            "value": "F1"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "workerSizeId": {
+            "value": "0"
+        },
+        "nodeApiName": {
+            "value": "app-node-api-uks"
+        },
+        "nodeApiLocation": {
+            "value": "UK South"
+        },
+        "hostingPlanName": {
+            "value": "asp-mhra-node-products"
+        },
+        "nodeApirAlwaysOn": {
+            "value": false
+        },
+        "nodeApiFtpsState": {
+            "value": "FtpsOnly"
+        },
+        "nodeApiLinuxFxVersion": {
+            "value": "NODE|20-lts"
+        },
+        "nodeDocIndexUpdaterName": {
+            "value": "app-node-doc-index-updater-uks"
+        },
+        "nodeDocIndexUpdaterLocation": {
+            "value": "UK South"
+        },
+        "nodeDocIndexUpdaterAlwaysOn": {
+            "value": false
+        },
+        "nodeDocIndexUpdaterFtpsState": {
+            "value": "FtpsOnly"
+        },
+        "nodeDocIndexUpdaterlinuxFxVersion": {
+            "value": "NODE|20-lts"
+        }
+    }
+}
