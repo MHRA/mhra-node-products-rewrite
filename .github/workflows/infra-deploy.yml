@@ -1,0 +1,38 @@
+name: Infrastructure Deploy 
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      AZURE_CREDENTIALS:
+        required: true
+      AZURE_SUBSCRIPTION:
+        required: true
+      AZURE_RG:
+        required: true
+
+jobs:
+  Deploy-bicep:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    steps:
+    - name: "Checkout Code ☁️"
+      uses: actions/checkout@v3
+
+    - name: "Az CLI Login"
+      uses: azure/login@v1
+      with:
+        creds: "${{ secrets.AZURE_CREDENTIALS }}"
+    
+    - name: "Deploy Bicep File"
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: infrastructure/main.bicep
+        parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'
+        # failOnStdErr: false
