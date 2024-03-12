@@ -10,29 +10,17 @@
         "appSevicePlanLocation": {
             "value": "UK South"
         },
-        "numberOfWorkers": {
-            "value": "1"
-        },
         "sku": {
             "value": "Free"
         },
         "skuCode": {
             "value": "F1"
         },
-        "workerSize": {
-            "value": "0"
-        },
-        "workerSizeId": {
-            "value": "0"
-        },
         "nodeApiName": {
             "value": "app-node-api-uks"
         },
         "nodeApiLocation": {
             "value": "UK South"
-        },
-        "hostingPlanName": {
-            "value": "asp-mhra-node-products"
         },
         "nodeApiAlwaysOn": {
             "value": false
