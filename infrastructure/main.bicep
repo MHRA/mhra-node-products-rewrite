@@ -4,7 +4,7 @@ param appServicePlanName string
 @description('App Service Plan Parameters')
 param appSevicePlanLocation string
 param sku string
-param skucode string
+param skuCode string
 param workerTierName string
 
 @description('Node Api App Parameters')
@@ -17,7 +17,7 @@ param nodeApiLinuxFxVersion string
 @description('Node Doc Index Updater Parameters')
 param nodeDocIndexUpdaterName string
 param nodeDocIndexUpdaterLocation string
-param nodeDocIndexUpdaterftpsState string
+param nodeDocIndexUpdaterFtpsState string
 param nodeDocIndexUpdaterAlwaysOn bool
 param nodeDocIndexUpdaterLinuxFxVersion string
 
@@ -30,7 +30,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   tags: {}
   sku: {
     tier: sku
-    name: skucode
+    name: skuCode
   }
   properties: {
     reserved: true
@@ -73,7 +73,7 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2022-09-01' = {
     siteConfig: {
       linuxFxVersion: nodeDocIndexUpdaterLinuxFxVersion
       alwaysOn: nodeDocIndexUpdaterAlwaysOn 
-      ftpsState: nodeDocIndexUpdaterftpsState
+      ftpsState: nodeDocIndexUpdaterFtpsState
     }
     httpsOnly: true
     publicNetworkAccess: 'Disabled'

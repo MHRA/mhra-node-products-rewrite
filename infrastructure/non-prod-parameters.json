@@ -55,7 +55,7 @@
         "nodeDocIndexUpdaterFtpsState": {
             "value": "FtpsOnly"
         },
-        "nodeDocIndexUpdaterlinuxFxVersion": {
+        "nodeDocIndexUpdaterLinuxFxVersion": {
             "value": "NODE|20-lts"
         },
         "workerTierName": {
