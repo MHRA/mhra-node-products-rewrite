@@ -38,4 +38,4 @@ jobs:
       with:
         directory: infrastructure
         framework: bicep
-        skip_check: CKV_AZURE_17, CKV_AZURE_16
+        skip_check: CKV_AZURE_17,CKV_AZURE_16
