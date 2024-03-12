@@ -77,6 +77,7 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2022-09-01' = {
       minTlsVersion: '1.2'
       http20Enabled: true
     }
+    clientAffinityEnabled: false
     httpsOnly: true
     publicNetworkAccess: 'Disabled'
   }
