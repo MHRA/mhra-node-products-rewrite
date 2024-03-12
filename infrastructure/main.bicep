@@ -6,9 +6,9 @@ param appServicePlanName string
 param appSevicePlanLocation string
 param sku string
 param skucode string
-param workerSize string
 param workerSizeId string
 param numberOfWorkers string
+param workerTierName string
 
 // 2 apps params
 
@@ -28,53 +28,57 @@ param nodeDocIndexUpdaterAlwaysOn bool
 param nodeDocIndexUpdaterLinuxFxVersion string
 
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2018-11-01' = {
+
+resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: appServicePlanName
   location: appSevicePlanLocation
   kind: 'linux'
   tags: {}
-  properties: {
-    name: appServicePlanName
-    workerSize: workerSize
-    workerSizeId: workerSizeId
-    numberOfWorkers: numberOfWorkers
-    reserved: true
-    zoneRedundant: false
-  }
   sku: {
     tier: sku
     name: skucode
   }
+  properties: {
+    reserved: true
+    zoneRedundant: false
+    workerTierName: workerTierName
+    targetWorkerSizeId: workerSizeId
+    targetWorkerCount: numberOfWorkers
+  }
 }
 
-
-resource nodeApiApp 'Microsoft.Web/sites@2018-11-01' = { // have a look at date version
+resource nodeApiApp 'Microsoft.Web/sites@2022-09-01' = {
   name: nodeApiName
   location: nodeApiLocation
-  tags: {}
+  tags: {
+    application: 'Node Api'
+  }
   properties: {
-    name: nodeApiName
+    serverFarmId: appServicePlan.id
     siteConfig: {
       appSettings: []
       linuxFxVersion: nodeApiLinuxFxVersion
       alwaysOn: nodeApiAlwaysOn
       ftpsState: nodeApiFtpsState
     }
-    serverFarmId: appServicePlan.id
     clientAffinityEnabled: false
     virtualNetworkSubnetId: null
     httpsOnly: true
     publicNetworkAccess: 'Disabled'
   }
-  dependsOn: []
+  dependsOn: [
+    appServicePlan
+  ]
 }
 
 
 
-resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2018-11-01' = {
+resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2022-09-01' = {
   name: nodeDocIndexUpdaterName
   location: nodeDocIndexUpdaterLocation
-  tags: {}
+  tags: {
+    applicaiton: 'node doc index updater'
+  }
   properties: {
     name: nodeDocIndexUpdaterName
     siteConfig: {
@@ -89,5 +93,7 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2018-11-01' = {
     httpsOnly: true
     publicNetworkAccess: 'Disabled'
   }
-  dependsOn: []
+  dependsOn: [
+    appServicePlan
+  ]
 }

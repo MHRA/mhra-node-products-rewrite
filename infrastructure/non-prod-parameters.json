@@ -57,6 +57,9 @@
         },
         "nodeDocIndexUpdaterlinuxFxVersion": {
             "value": "NODE|20-lts"
+        },
+        "workerTierName": {
+            "value": "Free"
         }
     }
 }
