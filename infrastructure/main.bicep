@@ -55,9 +55,6 @@ resource nodeApiApp 'Microsoft.Web/sites@2022-09-01' = {
     clientAffinityEnabled: false
     httpsOnly: true
   }
-  dependsOn: [
-    appServicePlan
-  ]
 }
 
 
@@ -78,7 +75,4 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2022-09-01' = {
     httpsOnly: true
     publicNetworkAccess: 'Disabled'
   }
-  dependsOn: [
-    appServicePlan
-  ]
 }
