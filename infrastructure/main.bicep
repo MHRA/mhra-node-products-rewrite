@@ -52,6 +52,7 @@ resource nodeApiApp 'Microsoft.Web/sites@2022-09-01' = {
       alwaysOn: nodeApiAlwaysOn
       ftpsState: nodeApiFtpsState
       minTlsVersion: '1.2'
+      http20Enabled: true
     }
     clientAffinityEnabled: false
     httpsOnly: true
@@ -74,6 +75,7 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2022-09-01' = {
       alwaysOn: nodeDocIndexUpdaterAlwaysOn 
       ftpsState: nodeDocIndexUpdaterFtpsState
       minTlsVersion: '1.2'
+      http20Enabled: true
     }
     httpsOnly: true
     publicNetworkAccess: 'Disabled'
