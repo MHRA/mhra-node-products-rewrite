@@ -1,0 +1,37 @@
+name: Infrastructure CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+    paths:
+      - "infrastructure/**"
+      - ".github/workflows/infra**"
+
+
+jobs:
+  Infra-CI-non-prod:
+    uses: ./.github/workflows/infra-ci.yml
+    if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' ) 
+    with:
+      environment: 'non-prod'
+    secrets:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+  # Infra-CI-Prod:
+  #   uses: ./.github/workflows/infra-ci.yml
+  #   if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' )
+  #   with:
+  #     environment: 'prod' 
+  #   secrets:
+  #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+  Infra-Deploy-non-prod:
+      uses: ./.github/workflows/infra-cd.yml
+      if: github.event_name == 'push' && github.ref_name == 'main'
+      with:
+        environment: 'non-prod' 
+      secrets:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}

@@ -1,0 +1,41 @@
+name: Infrastructure CI
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      AZURE_CREDENTIALS:
+        required: true
+
+
+jobs:
+  Infra-CI-What-If:
+    environment:
+      name: ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Checkout Code ☁️"
+      uses: actions/checkout@v3
+
+    - name: "Az CLI Login"
+      uses: azure/login@v1
+      with:
+        creds: "${{ secrets.AZURE_CREDENTIALS }}"
+
+    - name: "Run what-if for CI"
+      uses: azure/arm-deploy@v1
+      with:
+        template: infrastructure/main.bicep
+        resourceGroupName: adazr-rg-1001
+        parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'
+        # failOnStdErr: false   
+        additionalArguments: "--what-if"
+
+    - name: "Checkov Scan"
+      uses: bridgecrewio/checkov-action@master
+      with:
+        directory: infrastructure
+        framework: bicep
+        skip_check: CKV_AZURE_17,CKV_AZURE_16
