@@ -8,19 +8,19 @@
             "value": "asp-mhra-node-products"
         },
         "appSevicePlanLocation": {
-            "value": "UK West"
+            "value": "UK South"
         },
         "sku": {
-            "value": "Free"
+            "value": "Basic"
         },
         "skuCode": {
-            "value": "F1"
+            "value": "B1"
         },
         "nodeApiName": {
-            "value": "app-node-api-uks"
+            "value": "app-mhra-pp-medapi-nonprod-uks"
         },
         "nodeApiLocation": {
-            "value": "UK West"
+            "value": "UK South"
         },
         "nodeApiAlwaysOn": {
             "value": false
@@ -32,10 +32,10 @@
             "value": "NODE|20-lts"
         },
         "nodeDocIndexUpdaterName": {
-            "value": "app-node-doc-index-updater-uks"
+            "value": "app-mhra-pp-indexupdater-nonprod-uks"
         },
         "nodeDocIndexUpdaterLocation": {
-            "value": "UK West"
+            "value": "UK South"
         },
         "nodeDocIndexUpdaterAlwaysOn": {
             "value": false

@@ -14,10 +14,10 @@
             "value": "1"
         },
         "sku": {
-            "value": "Free"
+            "value": "Basic"
         },
         "skuCode": {
-            "value": "F1"
+            "value": "B1"
         },
         "workerSize": {
             "value": "0"
@@ -26,7 +26,7 @@
             "value": "0"
         },
         "nodeApiName": {
-            "value": "app-node-api-uks"
+            "value": "app-mhra-pp-medapi-prod-uks"
         },
         "nodeApiLocation": {
             "value": "UK South"
@@ -44,7 +44,7 @@
             "value": "NODE|20-lts"
         },
         "nodeDocIndexUpdaterName": {
-            "value": "app-node-doc-index-updater-uks"
+            "value": "app-mhra-pp-indexupdater-prod-uks"
         },
         "nodeDocIndexUpdaterLocation": {
             "value": "UK South"

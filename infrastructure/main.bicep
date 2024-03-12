@@ -25,7 +25,7 @@ param nodeDocIndexUpdaterLinuxFxVersion string
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: appServicePlanName
-  location: appSevicePlanLocation
+  location: appSevicePlanLocation 
   kind: 'linux'
   tags: {}
   sku: {
@@ -51,9 +51,11 @@ resource nodeApiApp 'Microsoft.Web/sites@2022-09-01' = {
       linuxFxVersion: nodeApiLinuxFxVersion
       alwaysOn: nodeApiAlwaysOn
       ftpsState: nodeApiFtpsState
+      minTlsVersion: '1.2'
     }
     clientAffinityEnabled: false
     httpsOnly: true
+    publicNetworkAccess: 'Disabled'
   }
 }
 
@@ -71,6 +73,7 @@ resource nodeDocIndexUpdaterApp 'Microsoft.Web/sites@2022-09-01' = {
       linuxFxVersion: nodeDocIndexUpdaterLinuxFxVersion
       alwaysOn: nodeDocIndexUpdaterAlwaysOn 
       ftpsState: nodeDocIndexUpdaterFtpsState
+      minTlsVersion: '1.2'
     }
     httpsOnly: true
     publicNetworkAccess: 'Disabled'
