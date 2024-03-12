@@ -6,6 +6,9 @@ on:
       environment:
         required: true
         type: string
+      resourceGroup:
+        required: true
+        type: string
     secrets:
       AZURE_CREDENTIALS:
         required: true
@@ -29,5 +32,6 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         template: infrastructure/main.bicep
+        resourceGroupName: ${{ inputs.resourceGroup }}
         parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'
         # failOnStdErr: false

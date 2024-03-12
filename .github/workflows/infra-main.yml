@@ -16,6 +16,7 @@ jobs:
     if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' ) 
     with:
       environment: 'non-prod'
+      resourceGroup: 'adazr-rg-1001'
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -24,6 +25,7 @@ jobs:
   #   if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' )
   #   with:
   #     environment: 'prod' 
+      # resourceGroup: 'adazr-rg-1001'
   #   secrets:
   #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -33,5 +35,6 @@ jobs:
       if: github.event_name == 'push' && github.ref_name == 'main'
       with:
         environment: 'non-prod' 
+        resourceGroup: 'adazr-rg-1001'
       secrets:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
