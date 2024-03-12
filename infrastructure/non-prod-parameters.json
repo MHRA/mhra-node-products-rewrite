@@ -34,7 +34,7 @@
         "hostingPlanName": {
             "value": "asp-mhra-node-products"
         },
-        "nodeApirAlwaysOn": {
+        "nodeApiAlwaysOn": {
             "value": false
         },
         "nodeApiFtpsState": {
