@@ -12,7 +12,6 @@ on:
       AZURE_CREDENTIALS:
         required: true
 
-
 jobs:
   Infra-CI-What-If:
     environment:
@@ -27,11 +26,20 @@ jobs:
       with:
         creds: "${{ secrets.AZURE_CREDENTIALS }}"
 
-    - name: "Run what-if for CI"
+    - name: "Bicep validate"
       uses: azure/arm-deploy@v2
       with:
         scope: resourcegroup
         deploymentMode: Validate
+        template: infrastructure/main.bicep
+        resourceGroupName: ${{ inputs.resourceGroup }}
+        parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'
+
+    - name: "Run what-if for CI"
+      uses: azure/arm-deploy@v2
+      with:
+        scope: resourcegroup
+        deploymentMode: Incremental
         template: infrastructure/main.bicep
         resourceGroupName: ${{ inputs.resourceGroup }}
         parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'
