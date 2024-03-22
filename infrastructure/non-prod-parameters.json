@@ -28,9 +28,6 @@
         "FtpsState": {
             "value": "Disabled"
         },
-        "LinuxFxVersion": {
-            "value": "NODE|20-lts"
-        },
         "ResouceLocation": {
             "value": "UK South"
         },
