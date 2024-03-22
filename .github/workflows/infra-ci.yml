@@ -20,16 +20,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout Code ☁️"
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4.1.1
 
     - name: "Az CLI Login"
-      uses: azure/login@v1
+      uses: azure/login@v2.0.0
       with:
         creds: "${{ secrets.AZURE_CREDENTIALS }}"
 
     - name: "Run what-if for CI"
-      uses: azure/arm-deploy@v1
+      uses: azure/arm-deploy@v2
       with:
+        scope: resourcegroup
+        deploymentMode: Validate
         template: infrastructure/main.bicep
         resourceGroupName: ${{ inputs.resourceGroup }}
         parameters: 'infrastructure/${{ inputs.environment }}-parameters.json'

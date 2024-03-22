@@ -4,50 +4,249 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "appServicePlanName": {
+        "AppServicePlanName": {
             "value": "asp-mhra-node-products"
         },
-        "appSevicePlanLocation": {
-            "value": "UK South"
-        },
-        "sku": {
+        "AppServiceSKUTier": {
             "value": "Basic"
         },
-        "skuCode": {
+        "AppServiceSKUName": {
             "value": "B1"
         },
-        "nodeApiName": {
+        "MedicinesApiName": {
             "value": "app-mhra-pp-medapi-nonprod-uks"
         },
-        "nodeApiLocation": {
-            "value": "UK South"
-        },
-        "nodeApiAlwaysOn": {
-            "value": false
-        },
-        "nodeApiFtpsState": {
-            "value": "Disabled"
-        },
-        "nodeApiLinuxFxVersion": {
-            "value": "NODE|20-lts"
-        },
-        "nodeDocIndexUpdaterName": {
+        "DocIndexUpdaterName": {
             "value": "app-mhra-pp-indexupdater-nonprod-uks"
         },
-        "nodeDocIndexUpdaterLocation": {
-            "value": "UK South"
+        "FrontendAppName": {
+            "value": "app-mhra-pp-frontend-nonprod-uks"
         },
-        "nodeDocIndexUpdaterAlwaysOn": {
-            "value": false
+        "PARSAppName": {
+            "value": "app-mhra-pp-pars-nonprod-uks"
         },
-        "nodeDocIndexUpdaterFtpsState": {
+        "FtpsState": {
             "value": "Disabled"
         },
-        "nodeDocIndexUpdaterLinuxFxVersion": {
+        "LinuxFxVersion": {
             "value": "NODE|20-lts"
         },
-        "workerTierName": {
-            "value": "Basic"
+        "ResouceLocation": {
+            "value": "UK South"
+        },
+        "RedisName": {
+            "value": "redis-mhra-pp-indexupdater-nonprod-uks"
+        },
+        "MedicinesApiLinuxFxVersion": {
+            "value": "DOCKER|mhraproductsnonprodregistry.azurecr.io/products/medicines-api@TBC"
+        },
+        "DocIndexUpdaterLinuxFxVersion": {
+            "value": "DOCKER|mhraproductsnonprodregistry.azurecr.io/products/doc-index-updater@TBC"
+        },
+        "FrontendAppLinuxFxVersion": {
+            "value": "DOCKER|mhraproductsnonprodregistry.azurecr.io/products/frontend-web@TBC"
+        },
+        "PARSAppLinuxFxVersion": {
+            "value": "DOCKER|mhraproductsnonprodregistry.azurecr.io/products/pars-web@TBC"
+        },
+        "IPRestrictions": {
+            "value": [
+                {
+                    "action": "Allow",
+                    "description": "MHRA-VPN",
+                    "ipAddress": "37.130.234.1/32",
+                    "name": "MHRA-VPN",
+                    "priority": 100
+                },{
+                    "action": "Allow",
+                    "description": "MHRA-Wireless",
+                    "ipAddress": "37.130.233.49/32",
+                    "name": "MHRA-Wireless",
+                    "priority": 101
+                },{
+                    "action": "Allow",
+                    "description": "GP-RUNNERS",
+                    "ipAddress": "51.11.169.23/32",
+                    "name": "GP-RUNNERS",
+                    "priority": 102
+                }
+            ]
+        },
+        "MedicinesApiAppSettings": {
+            "value": [
+                {
+                    "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-password/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-username/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_URL",
+                    "value": "https://mhraproductsnonprodregistry.azurecr.io"
+                },{
+                    "name": "PORT",
+                    "value": "8000"
+                },{
+                    "name": "AZURE_SEARCH_INDEX",
+                    "value": "products-index-test"
+                },{
+                    "name": "AZURE_API_ADMIN_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/azure-api-search-admin-key/)"
+                },{
+                    "name": "SEARCH_SERVICE",
+                    "value": "mhraproductsnonprod"
+                },{
+                    "name": "AZURE_SEARCH_API_VERSION",
+                    "value": "2023-11-01"
+                },{
+                    "name": "AZURE_SEARCH_WORD_FUZZINESS",
+                    "value": "1"
+                },{
+                    "name": "AZURE_SEARCH_EXACTNESS_BOOST",
+                    "value": "4"
+                },{
+                    "name": "BMGF_AZURE_SEARCH_INDEX",
+                    "value": "bmgf-index-test"
+                }
+            ]
+        },
+        "PARSAppSettings": {
+            "value": [
+                {
+                    "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-password/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-username/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_URL",
+                    "value": "https://mhraproductsnonprodregistry.azurecr.io"
+                }
+            ]
+        },
+        "FrontendAppSettings": {
+            "value": [
+                {
+                    "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-password/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-username/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_URL",
+                    "value": "https://mhraproductsnonprodregistry.azurecr.io"
+                }
+            ]
+        },
+        "DocIndexUpdaterAppSettings": {
+            "value": [
+                {
+                    "name": "SERVICE_BUS_MESSAGE_LOCK_TIMEOUT",
+                    "value": "20"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-password/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/acr-username/)"
+                },{
+                    "name": "DOCKER_REGISTRY_SERVER_URL",
+                    "value": "https://mhraproductsnonprodregistry.azurecr.io"
+                },{
+                    "name": "REDIS_SERVER",
+                    "value": "redis-mhra-pp-indexupdater-nonprod-uks.redis.cache.windows.net"
+                },{
+                    "name": "REDIS_PORT",
+                    "value": "6379"
+                },{
+                    "name": "REDIS_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/redis-key/)"
+                },{
+                    "name": "AZURE_SEARCH_API_VERSION",
+                    "value": "2023-11-01"
+                },{
+                    "name": "AZURE_API_ADMIN_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/azure-api-search-admin-key/)"
+                },{
+                    "name": "AZURE_SEARCH_INDEX",
+                    "value": "products-index-test"
+                },{
+                    "name": "AZURE_SEARCH_EXACTNESS_BOOST",
+                    "value": "4"
+                },{
+                    "name": "AZURE_SEARCH_WORD_FUZZINESS",
+                    "value": "0"
+                },{
+                    "name": "SENTINEL_SFTP_SERVER",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/non-prod-uat-sentinel-ip/)"
+                },{
+                    "name": "SENTINEL_SFTP_USERNAME",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/non-prod-uat-sentinel-username/)"
+                },{
+                    "name": "SENTINEL_PRIVATE_KEY_PASSWORD",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/non-prod-uat-sentinel-private-key-password/)"
+                },{
+                    "name": "SENTINEL_PUBLIC_KEY_PATH",
+                    "value": "/etc/.ssh/id_rsa.pub"
+                },{
+                    "name": "SENTINEL_PRIVATE_KEY_PATH",
+                    "value": "/etc/.ssh/id_rsa"
+                },{
+                    "name": "SERVICE_BUS_NAMESPACE",
+                    "value": "doc-index-updater-non-prod"
+                },{
+                    "name": "SEARCH_SERVICE",
+                    "value": "mhraproductsnonprod"
+                },{
+                    "name": "PARS_UPLOAD_SITE_ORIGIN",
+                    "value": "https://app-mhra-pp-pars-nonprod-uks.azurewebsites.net"
+                },{
+                    "name": "CREATE_QUEUE_NAME",
+                    "value": "doc-index-updater-create-queue-test"
+                },{
+                    "name": "CREATE_QUEUE_POLICY_NAME",
+                    "value": "doc-index-updater-create-auth-test"
+                },{
+                    "name": "CREATE_QUEUE_POLICY_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/sbus-create-queue-policy-key/)"
+                },{
+                    "name": "DELETE_QUEUE_NAME",
+                    "value": "doc-index-updater-delete-queue-test"
+                },{
+                    "name": "DELETE_QUEUE_POLICY_NAME",
+                    "value": "doc-index-updater-delete-auth-test"
+                },{
+                    "name": "DELETE_QUEUE_POLICY_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/sbus-delete-queue-policy-key/)"
+                },{
+                    "name": "STORAGE_ACCOUNT",
+                    "value": "mhraproductsnonprod"
+                },{
+                    "name": "STORAGE_CONTAINER",
+                    "value": "docs-test"
+                },{
+                    "name": "STORAGE_CONTAINER_TEMPORARY",
+                    "value": "temporary-docs-test"
+                },{
+                    "name": "STORAGE_MASTER_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/diu-master-storage-access-key/)"
+                },{
+                    "name": "BASIC_AUTH_USERNAME",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/basic-auth-username/)"
+                },{
+                    "name": "BASIC_AUTH_PASSWORD",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/basic-auth-password/)"
+                },{
+                    "name": "LOG_STORAGE_CONTAINER",
+                    "value": "transaction-logs-test"
+                },{
+                    "name": "LOG_STORAGE_ACCOUNT",
+                    "value": "mhralogsnonprod"
+                },{
+                    "name": "LOG_STORAGE_MASTER_KEY",
+                    "value": "@Microsoft.KeyVault(SecretUri=https://mhra-non-prod-02.vault.azure.net/secrets/diu-logs-storage-access-key/)"
+                }
+            ]
         }
     }
 }
