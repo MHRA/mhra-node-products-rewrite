@@ -13,7 +13,7 @@ on:
 jobs:
   Infra-CI-non-prod:
     uses: ./.github/workflows/infra-ci.yml
-    if: github.event_name == 'push' && startsWith( github.ref, 'refs/heads/feature/' ) 
+    if: startsWith( github.ref, 'refs/heads/feature/' ) 
     with:
       environment: 'non-prod'
       resourceGroup: 'adazr-rg-1001'
@@ -29,10 +29,9 @@ jobs:
   #   secrets:
   #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
-
   Infra-Deploy-non-prod:
       uses: ./.github/workflows/infra-cd.yml
-      if: github.event_name == 'push' && github.ref_name == 'main'
+      if: github.ref_name == 'main'
       with:
         environment: 'non-prod' 
         resourceGroup: 'adazr-rg-1001'
