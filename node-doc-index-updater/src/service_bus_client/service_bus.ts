@@ -24,7 +24,7 @@ export class AzureServiceBusClient {
         queue_name?: string, sas_policy_name?: string, sas_key?: string) {
             this.service_bus_endpoint = service_bus_namespace != null ? `${service_bus_namespace}.servicebus.windows.net`: process.env.SERVICE_BUS_BASE_ENDPOINT;
             this.queue_name = queue_name != null ? queue_name :  process.env.CREATE_QUEUE_NAME;
-            this.sas_policy_name = sas_policy_name != null ? process.env.SERVICE_BUS_SHARED_ACCESS_KEY_NAME;
+            this.sas_policy_name = sas_policy_name != null ? sas_policy_name : process.env.SERVICE_BUS_SHARED_ACCESS_KEY_NAME;
             this.sas_key = sas_key;
             this.client = this.create_client();
         }

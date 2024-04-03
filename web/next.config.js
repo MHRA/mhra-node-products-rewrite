@@ -37,4 +37,7 @@ module.exports = {
       ? ''
       : `/${process.env.ASSET_PREFIX}`,
   trailingSlash: true,
+  // experimental: {
+  //   outputStandalone: true
+  // }
 };

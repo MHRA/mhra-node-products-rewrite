@@ -4,15 +4,7 @@ import { AzureServiceBusClient } from "../service_bus_client/service_bus.js";
 export class DocumentManager {
     constructor() {
         this.client = new JobStatusClient();
-        /*
-        this.azure_service_bus_client = new AzureServiceBusClient(
-            process.env.SERVICE_BUS_NAMESPACE,
-            process.env.CREATE_QUEUE_NAME,
-            process.env.SERVICE_BUS_SHARED_ACCESS_KEY_NAME,
-            process.env.SERVICE_BUS_SHARED_ACCESS_KEY
-        );
-        */
-        this.azure_service_bus_client = new AzureServiceBusClient("nibsc-test", "doc-index-updater-create-queue", "test-policy", "xbtgo18N69Ut7V2Rpar6yrpkI5LB9LiEE+ASbNiU5zk=");
+        this.azure_service_bus_client = new AzureServiceBusClient(process.env.SERVICE_BUS_NAMESPACE, process.env.CREATE_QUEUE_NAME, process.env.SERVICE_BUS_SHARED_ACCESS_KEY_NAME, process.env.SERVICE_BUS_SHARED_ACCESS_KEY);
     }
     // Checks in an XML document into redis and adds to the queue
     async check_in_xml_document(document, type, blob_update_path, uploader_email, original_job_id) {
