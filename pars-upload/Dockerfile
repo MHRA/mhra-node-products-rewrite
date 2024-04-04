@@ -7,13 +7,6 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --production
 
 FROM base AS build
-
-# Required for build - dynamic pages based on storage account
-ARG AZURE_STORAGE_ACCOUNT
-ARG AZURE_STORAGE_KEY
-ENV AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT}
-ENV AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY}
-
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

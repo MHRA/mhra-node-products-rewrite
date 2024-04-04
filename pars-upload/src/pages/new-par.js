@@ -18,7 +18,9 @@ const ParUpload = ({ auth }) => {
         steps.map(({ data }) => data).filter((data) => data)
       )
 
-      const token = auth ? auth.token : 'bm9ucHJvZF91c2VyOndoZWVsc19tZWFzdXJlX291dHNpZGU='
+      const token = auth
+        ? auth.token
+        : 'bm9ucHJvZF91c2VyOndoZWVsc19tZWFzdXJlX291dHNpZGU='
       const username = auth ? auth.username : 'test-user@example.com'
 
       const response = await fetch(process.env.NEXT_PUBLIC_PARS_UPLOAD_URL, {
@@ -79,7 +81,7 @@ const combineFormDatas = (data) => {
     const page = data[i]
 
     for (const [name, value] of page) {
-      console.log("Form data name ", name, " form data value", value);
+      console.log('Form data name ', name, ' form data value', value)
       formData.append(name, value)
     }
   }
