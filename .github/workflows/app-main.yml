@@ -9,7 +9,7 @@ on:
         - "web/**"
         - ".github/workflows/app**"
 jobs:
-  CI-Build:
+  Build:
     uses: ./.github/workflows/app-ci.yml
     with:
       environment: "non-prod" 
@@ -19,7 +19,7 @@ jobs:
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   Deploy:
-    needs: CI-Build
+    needs: Build
     uses: ./.github/workflows/app-deploy.yml
     with:
       environment: "non-prod"

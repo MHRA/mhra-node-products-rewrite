@@ -18,7 +18,133 @@ on:
       
 
 jobs:
-  Build-and-Tests:
+  pars-upload-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: pars-upload
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login"
+        run: az acr login --name mhraproductsnonprodregistry
+
+      - name: Image Build
+        run: docker build -f Dockerfile -t mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
+ 
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+
+      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
+        if: github.event_name == 'pull_request'
+        run: docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
+        
+      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
+        if: github.ref_name == 'main'
+        run: |
+          docker tag mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:${{ github.sha }} mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:latest
+          docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
+          docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/pars-upload:latest
+  node-doc-index-updater-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: node-doc-index-updater
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login"
+        run: az acr login --name mhraproductsnonprodregistry
+
+      - name: Image Build
+        run: docker build -f Dockerfile -t mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} .
+ 
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+
+      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
+        if: github.event_name == 'pull_request'
+        run: docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}
+        
+      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
+        if: github.ref_name == 'main'
+        run: |
+          docker tag mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:latest
+          docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}
+          docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-doc-index-updater:latest
+  Node-API-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: node-api
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login"
+        run: az acr login --name mhraproductsnonprodregistry
+
+      - name: Image Build
+        run: docker build -f Dockerfile -t mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-api:${{ github.sha }} .
+ 
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-api:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+
+      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
+        if: github.event_name == 'pull_request'
+        run: docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-api:${{ github.sha }}
+        
+      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
+        if: github.ref_name == 'main'
+        run: |
+          docker tag mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-api:${{ github.sha }} mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-api:latest
+          docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/node-api:${{ github.sha }}
+          docker push mhraproductsnonprodregistry.azurecr.io/mhra-node-products-rewrite/npde-api:latest
+  Web-CI:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
