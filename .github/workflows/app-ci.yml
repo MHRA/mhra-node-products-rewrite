@@ -9,16 +9,14 @@ on:
     secrets:
       REGISTRY_ADDRESS:
         required: true
-      REGISTRY_USERNAME:
-        required: true
-      REGISTRY_PASSWORD:
-        required: true
       AZURE_CREDENTIALS:
+        required: true
+      REGISTRY_NAME:
         required: true
       
 
 jobs:
-  pars-upload-CI:
+  Pars-Upload-CI:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
@@ -35,7 +33,7 @@ jobs:
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
       - name: "ACR Login"
-        run: az acr login --name mhraproductsnonprodregistry
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
         run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
@@ -60,7 +58,7 @@ jobs:
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:latest
-  node-doc-index-updater-CI:
+  Node-Doc-Index-Updater-CI:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
@@ -77,7 +75,7 @@ jobs:
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
       - name: "ACR Login"
-        run: az acr login --name mhraproductsnonprodregistry
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
         run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} .
@@ -119,7 +117,7 @@ jobs:
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
       - name: "ACR Login"
-        run: az acr login --name mhraproductsnonprodregistry
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
         run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} .
@@ -161,7 +159,7 @@ jobs:
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
       - name: "ACR Login"
-        run: az acr login --name mhraproductsnonprodregistry
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
         run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} .
