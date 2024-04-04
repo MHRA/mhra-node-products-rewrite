@@ -1,0 +1,30 @@
+name: Build Deploy
+
+on:
+    push:
+      branches:
+        - main
+        - feature/**
+      paths:
+        - "web/**"
+        - ".github/workflows/app**"
+jobs:
+  CI-Build:
+    uses: ./.github/workflows/app-ci.yml
+    with:
+      environment: "non-prod"
+    secrets:
+      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  # Deploy:
+  #   needs: CI-Build
+  #   uses: ./.github/workflows/app-deploy.yml
+  #   with:
+  #     environment: "non-prod"
+  #   secrets:
+  #     REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+  #     REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+  #     REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+#  Owasp scan??

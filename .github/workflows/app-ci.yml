@@ -1,0 +1,57 @@
+name: App CI
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      REGISTRY_ADDRESS:
+        required: true
+      REGISTRY_USERNAME:
+        required: true
+      REGISTRY_PASSWORD:
+        required: true
+
+jobs:
+  Build-and-Tests:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: web
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+      - name: "Login to Docker"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_ADDRESS }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Image Build
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} .
+
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+
+      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
+        if: github.event_name == 'pull_request'
+        run: docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
+        
+      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
+        if: github.ref_name == 'main'
+        run: |
+          docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:latest
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:latest
