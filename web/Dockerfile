@@ -20,6 +20,7 @@ COPY . .
 RUN yarn build
 
 FROM base as runner
+ARG PORT=3000
 WORKDIR /app
 ENV NODE_ENV production
 
@@ -34,7 +35,7 @@ COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-EXPOSE 3000
-ENV PORT 3000
+EXPOSE ${PORT}
+ENV PORT ${PORT}
 
 CMD HOSTNAME="0.0.0.0" node server.js
