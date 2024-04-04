@@ -14,4 +14,7 @@ module.exports = {
 
     return config
   },
+  experimental: {
+    outputStandalone: true,
+  },
 }
