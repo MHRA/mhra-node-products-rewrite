@@ -18,7 +18,9 @@ const ParUpload = ({ auth }) => {
       const par_to_delete = getIdOfParToUpdate(steps)
       const combined = combineFormDatas(steps)
 
-      const token = auth ? auth.token : 'bm9ucHJvZF91c2VyOndoZWVsc19tZWFzdXJlX291dHNpZGU='
+      const token = auth
+        ? auth.token
+        : 'bm9ucHJvZF91c2VyOndoZWVsc19tZWFzdXJlX291dHNpZGU='
       const username = auth ? auth.username : 'test-user@example.com'
 
       const response = await fetch(

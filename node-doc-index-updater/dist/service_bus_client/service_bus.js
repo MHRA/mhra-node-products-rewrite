@@ -2,11 +2,10 @@ import { delay, isServiceBusError, ServiceBusAdministrationClient, ServiceBusCli
 import { AzureNamedKeyCredential } from "@azure/core-auth";
 export class AzureServiceBusClient {
     constructor(service_bus_namespace, queue_name, sas_policy_name, sas_key) {
-        this.service_bus_endpoint = service_bus_namespace != null ? `${service_bus_namespace}.servicebus.windows.net`
-            : "nibsc-test.servicebus.windows.net"; //doc-index-updater-non-prod.servicebus.windows.net
-        this.queue_name = queue_name != null ? queue_name : "doc-index-updater-create-queue";
-        this.sas_policy_name = sas_policy_name != null ? sas_policy_name : "test-policy"; //doc-index-updater-create-auth
-        this.sas_key = sas_key != null ? sas_key : "Kk6B1Td18uhGreZh2l7NVfAgnGyaBmusz+ASbDzDnH8="; //sdD4wqK21AVXtIkj+u5am4sqaMJneydT7ntSgQCs3II= - Kk6B1Td18uhGreZh2l7NVfAgnGyaBmusz+ASbDzDnH8= (create) : /mqxSTbJXGwk1aZb9SNAXTcqhf7+olt1J+ASbPMG/Dg= (delete)
+        this.service_bus_endpoint = service_bus_namespace != null ? `${service_bus_namespace}.servicebus.windows.net` : process.env.SERVICE_BUS_BASE_ENDPOINT;
+        this.queue_name = queue_name != null ? queue_name : process.env.CREATE_QUEUE_NAME;
+        this.sas_policy_name = sas_policy_name != null ? sas_policy_name : process.env.SERVICE_BUS_SHARED_ACCESS_KEY_NAME;
+        this.sas_key = sas_key;
         this.client = this.create_client();
     }
     /*
