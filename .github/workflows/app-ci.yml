@@ -13,6 +13,10 @@ on:
         required: true
       REGISTRY_NAME:
         required: true
+      AZURE_STORAGE_ACCOUNT:
+        required: true
+      AZURE_STORAGE_KEY:
+        required: true
       
 
 jobs:
@@ -36,7 +40,7 @@ jobs:
         run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
-        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} .
  
       - name: Scan image
         if: github.event_name == 'push'
@@ -162,7 +166,10 @@ jobs:
         run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
-        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} .
+        env:
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
  
       - name: Scan image
         if: github.event_name == 'push'
