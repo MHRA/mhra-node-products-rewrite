@@ -122,7 +122,7 @@ jobs:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
       - name: "ACR Login"
         run: az acr login --name ${{ secrets.REGISTRY_NAME }}
-
+ 
       - name: Image Build
         run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} .
  
