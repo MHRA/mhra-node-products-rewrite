@@ -18,7 +18,7 @@ on:
       REGISTRY_ADDRESS:
         required: true
 jobs:
-  Deploy-App-Service-Slot:
+  Deploy-App-Service:
     if: ${{ github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-latest
     environment:
@@ -31,7 +31,7 @@ jobs:
         uses: azure/login@v2.0.0
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
-          
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
