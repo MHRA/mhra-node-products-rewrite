@@ -22,14 +22,14 @@ jobs:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
       AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
-  Deploy:
-    needs: Build
-    uses: ./.github/workflows/app-deploy.yml
-    with:
-      environment: "non-prod"
-    secrets:
-      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
-      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  # Deploy:
+  #   needs: Build
+  #   uses: ./.github/workflows/app-deploy.yml
+  #   with:
+  #     environment: "non-prod"
+  #   secrets:
+  #     REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+  #     REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+  #     REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 #  Owasp scan??
