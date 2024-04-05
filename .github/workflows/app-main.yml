@@ -41,8 +41,6 @@ jobs:
       name: "node-doc-index-updater"
     secrets:
       REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
-      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
   Deploy-non-prod-node-api:
@@ -54,8 +52,6 @@ jobs:
       name: "node-api"
     secrets:
       REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
-      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 #  Owasp scan??
 
@@ -68,8 +64,6 @@ jobs:
       name: "pars-updater"
     secrets:
       REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
-      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
   Deploy-non-prod-web:
@@ -81,6 +75,4 @@ jobs:
       name: "web"
     secrets:
       REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
-      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
