@@ -174,7 +174,7 @@ jobs:
       -   name: Build
           uses: docker/build-push-action@v5
           with:
-            context: .
+            context: ./web
             push: false
             file: ./web/Dockerfile
             tags: ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
