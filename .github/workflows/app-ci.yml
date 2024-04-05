@@ -165,13 +165,23 @@ jobs:
       - name: "ACR Login"
         run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
-      - name: Image Build
-        env:
-          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
-          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
-        run: docker buildx build --build-arg AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --build-arg AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY} -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
+      # - name: Image Build
+      #   env:
+      #     AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+      #     AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      #   run: docker buildx build --build-arg AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --build-arg AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY} -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
               
- 
+      -   name: Build and push
+          uses: docker/build-push-action@v5
+          with:
+            context: .
+            push: false
+            file: Dockerfile
+            tags: ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
+            secrets: |
+              AZURE_STORAGE_ACCOUNT=${{ secrets.AZURE_STORAGE_ACCOUNT }}
+              AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+
       - name: Scan image
         if: github.event_name == 'push'
         uses: anchore/scan-action@v3.6.4
