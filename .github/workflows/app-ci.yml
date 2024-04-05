@@ -169,7 +169,7 @@ jobs:
         env:
           AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
-        run: docker build --build-arg AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --build-arg AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY} -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
+        run: docker buildx build --build-arg AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --build-arg AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY} -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
               
  
       - name: Scan image
