@@ -32,7 +32,7 @@ jobs:
         with:
           creds: "${{ secrets.AZURE_CREDENTIALS }}"
 
-      - name: Deploy to Azure Web App
+      - name: Deploy Image to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
         with:
