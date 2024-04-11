@@ -19,7 +19,7 @@ on:
         required: true
 jobs:
   Deploy-App-Service:
-    runs-on: ubuntu-latest
+    runs-on: GP_PROD
     environment:
       name: ${{ inputs.environment }}
     steps:
