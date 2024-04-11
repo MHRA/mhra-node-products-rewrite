@@ -40,7 +40,7 @@ jobs:
         run: az acr login --name ${{ secrets.REGISTRY_NAME }}
 
       - name: Image Build
-        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} .
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
  
       - name: Scan image
         if: github.event_name == 'push'
@@ -133,7 +133,7 @@ jobs:
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }}
-          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/npde-api:latest
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:latest
   Web-CI:
     runs-on: ubuntu-latest
     environment:
