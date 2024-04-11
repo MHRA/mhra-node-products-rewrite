@@ -19,7 +19,6 @@ on:
         required: true
 jobs:
   Deploy-App-Service:
-    if: ${{ github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
