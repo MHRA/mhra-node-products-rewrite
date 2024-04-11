@@ -52,12 +52,8 @@ jobs:
           severity-cutoff: critical
           output-format: table
 
-      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
-        if: github.event_name == 'pull_request'
-        run: docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
-        
-      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
-        if: github.ref_name == 'main'
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
@@ -94,12 +90,8 @@ jobs:
           severity-cutoff: critical
           output-format: table
 
-      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
-        if: github.event_name == 'pull_request'
-        run: docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}
-        
-      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
-        if: github.ref_name == 'main'
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}
@@ -135,13 +127,9 @@ jobs:
           fail-build: false
           severity-cutoff: critical
           output-format: table
-
-      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
-        if: github.event_name == 'pull_request'
-        run: docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }}
         
-      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
-        if: github.ref_name == 'main'
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }}
@@ -191,13 +179,9 @@ jobs:
           fail-build: false
           severity-cutoff: critical
           output-format: table
-
-      - name: "Build and Push to ACR for Deploy to PR Slot Environments"
-        if: github.event_name == 'pull_request'
-        run: docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
         
-      - name: "Build and Push to ACR for Latest Deploy to Main Slot"
-        if: github.ref_name == 'main'
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}

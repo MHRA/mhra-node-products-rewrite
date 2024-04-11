@@ -33,6 +33,7 @@ jobs:
   #     AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
   #     AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
   Deploy-non-prod-node-doc-index-updater:
+    if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
     needs: App-non-prod-CI
     uses: ./.github/workflows/app-deploy.yml
     with:
@@ -44,6 +45,7 @@ jobs:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
   Deploy-non-prod-node-api:
+    if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
     needs: App-non-prod-CI
     uses: ./.github/workflows/app-deploy.yml
     with:
@@ -56,6 +58,7 @@ jobs:
 #  Owasp scan??
 
   Deploy-non-prod-pars:
+    if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
     needs: App-non-prod-CI
     uses: ./.github/workflows/app-deploy.yml
     with:
@@ -67,6 +70,7 @@ jobs:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
   Deploy-non-prod-web:
+    if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
     needs: App-non-prod-CI
     uses: ./.github/workflows/app-deploy.yml
     with:
