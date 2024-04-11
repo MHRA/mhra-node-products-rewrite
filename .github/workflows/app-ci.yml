@@ -53,7 +53,7 @@ jobs:
           output-format: table
 
       - name: "Build and Push to ACR for Latest Deploy"
-        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
+        if: github.ref_name == 'main' 
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
@@ -91,7 +91,7 @@ jobs:
           output-format: table
 
       - name: "Build and Push to ACR for Latest Deploy"
-        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
+        if: github.ref_name == 'main' 
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}
@@ -129,7 +129,7 @@ jobs:
           output-format: table
         
       - name: "Build and Push to ACR for Latest Deploy"
-        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
+        if: github.ref_name == 'main' 
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }}
@@ -181,7 +181,7 @@ jobs:
           output-format: table
         
       - name: "Build and Push to ACR for Latest Deploy"
-        if: github.ref_name == 'main' ||  github.event_name == 'pull_request'
+        if: github.ref_name == 'main'
         run: |
           docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:latest
           docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
