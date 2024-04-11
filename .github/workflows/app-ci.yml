@@ -177,7 +177,7 @@ jobs:
             context: ./web
             push: false
             file: ./web/Dockerfile
-            tags: ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
+            tags: ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
             secrets: |
               AZURE_STORAGE_ACCOUNT=${{ secrets.AZURE_STORAGE_ACCOUNT }}
               AZURE_STORAGE_KEY=${{ secrets.AZURE_STORAGE_KEY }}
