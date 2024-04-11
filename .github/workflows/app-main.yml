@@ -1,0 +1,82 @@
+name: Build Deploy
+
+on:
+    push:
+      branches:
+        - main
+        - feature/** 
+      paths:
+        - "node-api/**"
+        - "node-doc-index-updater/**"
+        - "pars-upload/**"
+        - "web/**"
+        - ".github/workflows/app**"
+jobs:
+  App-non-prod-CI:
+    uses: ./.github/workflows/app-ci.yml
+    with:
+      environment: "non-prod" 
+    secrets:
+      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+      REGISTRY_NAME: ${{ secrets.REGISTRY_NAME }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+      AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+  # App-prod-CI:
+  #   uses: ./.github/workflows/app-ci.yml
+  #   with:
+  #     environment: "prod" 
+  #   secrets:
+  #     REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+  #     REGISTRY_NAME: ${{ secrets.REGISTRY_ADDRESS }}
+  #     AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  #     AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+  #     AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+  Deploy-non-prod-node-doc-index-updater:
+    if: github.ref_name == 'main' 
+    needs: App-non-prod-CI
+    uses: ./.github/workflows/app-deploy.yml
+    with:
+      environment: "non-prod"
+      app-name: "app-mhra-pp-indexupdater-nonprod-uks"
+      name: "node-doc-index-updater"
+    secrets:
+      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+  Deploy-non-prod-node-api:
+    if: github.ref_name == 'main'
+    needs: App-non-prod-CI
+    uses: ./.github/workflows/app-deploy.yml
+    with:
+      environment: "non-prod"
+      app-name: "app-mhra-pp-medapi-nonprod-uks"
+      name: "node-api"
+    secrets:
+      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+#  Owasp scan??
+
+  Deploy-non-prod-pars:
+    if: github.ref_name == 'main' 
+    needs: App-non-prod-CI
+    uses: ./.github/workflows/app-deploy.yml
+    with:
+      environment: "non-prod"
+      app-name: "app-mhra-pp-pars-nonprod-uks"
+      name: "pars-updater"
+    secrets:
+      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+  Deploy-non-prod-web:
+    if: github.ref_name == 'main' 
+    needs: App-non-prod-CI
+    uses: ./.github/workflows/app-deploy.yml
+    with:
+      environment: "non-prod"
+      app-name: "app-mhra-pp-frontend-nonprod-uks"
+      name: "web"
+    secrets:
+      REGISTRY_ADDRESS: ${{ secrets.REGISTRY_ADDRESS }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}

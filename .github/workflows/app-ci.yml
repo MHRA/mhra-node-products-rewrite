@@ -1,0 +1,188 @@
+name: App CI
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      REGISTRY_ADDRESS:
+        required: true
+      AZURE_CREDENTIALS:
+        required: true
+      REGISTRY_NAME:
+        required: true
+      AZURE_STORAGE_ACCOUNT:
+        required: true
+      AZURE_STORAGE_KEY:
+        required: true
+      
+
+jobs:
+  Pars-Upload-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: pars-upload
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login"
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
+
+      - name: Image Build
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} .
+ 
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' 
+        run: |
+          docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:latest
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:latest
+  Node-Doc-Index-Updater-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: node-doc-index-updater
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login"
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
+
+      - name: Image Build
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} .
+ 
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' 
+        run: |
+          docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:latest
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-doc-index-updater:latest
+  Node-API-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: node-api
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login" 
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
+ 
+      - name: Image Build
+        run: docker build -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} .
+ 
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+        
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main' 
+        run: |
+          docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:latest
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/node-api:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/npde-api:latest
+  Web-CI:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: web
+    steps:
+      - name: "Checkout code ☁️"
+        uses: actions/checkout@v4
+
+      - name: "Az CLI Login"
+        uses: azure/login@v2.0.0
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+      - name: "ACR Login"
+        run: az acr login --name ${{ secrets.REGISTRY_NAME }}
+
+      # - name: Image Build
+      #   env:
+      #     AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+      #     AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      #   run: docker buildx build --build-arg AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --build-arg AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY} -f Dockerfile -t ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/pars-upload:${{ github.sha }} .
+              
+      -   name: Build
+          uses: docker/build-push-action@v5
+          with:
+            context: ./web
+            push: false
+            file: ./web/Dockerfile
+            tags: ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
+            secrets: |
+              AZURE_STORAGE_ACCOUNT=${{ secrets.AZURE_STORAGE_ACCOUNT }}
+              AZURE_STORAGE_KEY=${{ secrets.AZURE_STORAGE_KEY }}
+              
+      - name: Scan image
+        if: github.event_name == 'push'
+        uses: anchore/scan-action@v3.6.4
+        id: imagescan
+        with:
+          image: "${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}"
+          fail-build: false
+          severity-cutoff: critical
+          output-format: table
+        
+      - name: "Build and Push to ACR for Latest Deploy"
+        if: github.ref_name == 'main'
+        run: |
+          docker tag ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }} ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:latest
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_ADDRESS }}/mhra-node-products-rewrite/web:latest
